@@ -11,6 +11,10 @@ export default function Home() {
       <Link href="/profile" className="px-8 py-3 border border-amber-200">
         to profile
       </Link>
+
+      <Link href="/comments" className="px-8 py-3 border border-amber-200">
+        to comments
+      </Link>
     </div>
   );
 }
