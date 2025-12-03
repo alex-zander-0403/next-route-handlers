@@ -4,7 +4,7 @@ import { comments } from "./data";
 export async function GET() {
   return Response.json(comments);
 }
-// {"text": "new comment"} // подается 
+// {"text": "new comment"} // подается
 export async function POST(request: Request) {
   const comment = await request.json();
 
