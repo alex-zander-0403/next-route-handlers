@@ -1,10 +1,11 @@
-import { comments } from "./data";
+import { comments } from "./mockData";
 
 //
 export async function GET() {
   return Response.json(comments);
 }
-// {"text": "new comment"} // подается
+
+// {"text": "new comment"} // request
 export async function POST(request: Request) {
   const comment = await request.json();
 
@@ -15,5 +16,12 @@ export async function POST(request: Request) {
 
   comments.push(newComment);
 
-  return new Response(JSON.stringify(newComment));
+  return new Response(JSON.stringify(newComment), {
+    headers: { "Content-Type": "application/json" },
+    status: 201,
+  });
 }
+
+
+
+
