@@ -51,6 +51,16 @@ export default function Home() {
     }
   }
 
+  // FN редактирование комментария
+  async function handleDelete(id: string) {
+    // обращение к динамическому ендпоинту DELETE в comments -> route.ts
+    await fetch(`/comments/${id}`, {
+      method: "DELETE",
+    });
+
+    loadComments();
+  }
+
   //
   useEffect(() => {
     loadComments();
@@ -108,6 +118,13 @@ export default function Home() {
                     className="p-1 rounded text-black bg-blue-800"
                   >
                     Редактировать
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(comment.id)}
+                    className="p-1 rounded text-black bg-red-800"
+                  >
+                    Удалить
                   </button>
                 </div>
               </div>

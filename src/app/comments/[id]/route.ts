@@ -52,7 +52,6 @@ export async function DELETE(
     const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
 
     if (!res.ok) throw new Error("Deleting failed");
-    // const comment = await res.json();
 
     return new Response(null, { status: 204 });
   } catch {
