@@ -9,8 +9,8 @@ export async function GET(
 
   try {
     const res = await fetch(`${API_URL}/${id}`);
-    if (!res.ok) throw new Error();
 
+    if (!res.ok) throw new Error("Failed to fetch");
     const comment = await res.json();
 
     return Response.json(comment);
@@ -34,17 +34,11 @@ export async function PATCH(
       body: JSON.stringify({ text }),
     });
 
-    if (!res.ok) throw new Error();
-
-    //
+    if (!res.ok) throw new Error("Update failed");
+    return Response.json(await res.json());
   } catch {
-    return new Response(null, { status: 404 });
+    return Response.json(null, { status: 400 });
   }
-
-  const index = comments.findIndex((comment) => comment.id === parseInt(id));
-  comments[index].text = text;
-
-  return Response.json(comments[index]);
 }
 
 // динамический DELETE
@@ -53,11 +47,15 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
-  const index = comments.findIndex((comment) => comment.id === parseInt(id));
 
-  const deletedComment = comments[index];
+  try {
+    const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
 
-  comments.splice(index, 1);
+    if (!res.ok) throw new Error("Deleting failed");
+    const comment = await res.json();
 
-  return Response.json(deletedComment);
+    return Response.json(comment);
+  } catch {
+    return new Response(null, { status: 404 });
+  }
 }
