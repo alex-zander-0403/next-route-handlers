@@ -1,6 +1,6 @@
 const API_URL = "https://68671e3ae3fefb261eddbed3.mockapi.io/api/v1/comments";
 
-//
+// статический GET
 export async function GET() {
   try {
     const response = await fetch(API_URL);
@@ -13,7 +13,7 @@ export async function GET() {
   }
 }
 
-//
+// статический POST
 export async function POST(request: Request) {
   try {
     const { text } = await request.json();
