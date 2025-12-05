@@ -10,7 +10,7 @@ export async function GET(
   try {
     const res = await fetch(`${API_URL}/${id}`);
 
-    if (!res.ok) throw new Error("Failed to fetch");
+    if (!res.ok) throw new Error("Failed to fetch comments");
     const comment = await res.json();
 
     return Response.json(comment);
@@ -34,7 +34,7 @@ export async function PATCH(
       body: JSON.stringify({ text }),
     });
 
-    if (!res.ok) throw new Error("Update failed");
+    if (!res.ok) throw new Error("Updating failed");
     return Response.json(await res.json());
   } catch {
     return Response.json(null, { status: 400 });
@@ -52,10 +52,10 @@ export async function DELETE(
     const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
 
     if (!res.ok) throw new Error("Deleting failed");
-    const comment = await res.json();
+    // const comment = await res.json();
 
-    return Response.json(comment);
+    return new Response(null, { status: 204 });
   } catch {
-    return new Response(null, { status: 404 });
+    return new Response(null, { status: 400 });
   }
 }
