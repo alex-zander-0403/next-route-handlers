@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //
 type Comment = {
@@ -10,6 +10,7 @@ type Comment = {
 //
 export default function Home() {
   const [comments, setComments] = useState<Comment[]>([]);
+  const [newCommentText, setNewCommentText] = useState("");
 
   async function loadComments() {
     const res = await fetch("/comments");
@@ -17,6 +18,20 @@ export default function Home() {
     setComments(data);
   }
 
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    const res = await fetch("/comments", {
+      method: "POST",
+      body: JSON.stringify({ text: newCommentText }),
+    });
+
+    if (res.ok) {
+      setNewCommentText("");
+    }
+  }
+
+  //
   useEffect(() => {
     loadComments();
   }, []);
@@ -25,9 +40,35 @@ export default function Home() {
   return (
     <div className="flex justify-center items-center flex-col p-10 gap-5">
       <h1 className="text-center text-3xl font-medium">Домашняя страница</h1>
-      <ul>
+
+      <div className="flex flex-col items-center p-5 gap-3 rounded bg-gray-600">
+        <h2>Добавить комментарий</h2>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <input
+            type="text"
+            placeholder="введите текст"
+            value={newCommentText}
+            onChange={(e) => setNewCommentText(e.target.value)}
+            required
+            className="px-3 py-2 rounded bg-gray-500"
+          />
+
+          <button
+            type="submit"
+            // onClick={(e) => handleSubmit(e)}
+            className="p-3 rounded text-black bg-green-300"
+          >
+            Добавить
+          </button>
+        </form>
+      </div>
+
+      <ul className="flex flex-col p-5 gap-3 rounded bg-gray-600">
         {comments.map((el) => (
-          <li key={el.id}>{el.text}</li>
+          <li key={el.id} className="px-10 py-3 rounded bg-gray-800">
+            <span>{el.text}</span>
+          </li>
         ))}
       </ul>
     </div>

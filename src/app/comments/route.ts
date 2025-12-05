@@ -29,10 +29,8 @@ export async function POST(request: Request) {
 
     return new Response(JSON.stringify(newComment), {
       headers: { "Content-Type": "application/json" },
-      status: 201
+      status: 201,
     });
-
-    //
   } catch {
     return new Response(null, { status: 400 });
   }
