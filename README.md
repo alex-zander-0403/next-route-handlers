@@ -42,7 +42,3 @@ _Интерфейс_
 ### 3. Интеграция с внешним API
 
 Проект использует MockAPI сервер для хранения данных:
-
-```typescript
-const API_URL = "https://68671e3ae3fefb261eddbed3.mockapi.io/api/v1/comments";
-```
