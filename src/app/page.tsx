@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 //
@@ -89,6 +90,8 @@ export default function Home() {
           </button>
         </form>
       </div>
+
+      <Link href='/users' className="px-5 py-2 cursor border border-blue-900 bg-blue-700">To Users</Link>
 
       <ul className="flex flex-col p-5 gap-3 rounded bg-gray-600">
         {comments.map((comment) => (
