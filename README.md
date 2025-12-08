@@ -36,6 +36,9 @@ _Интерфейс_
 - `GET /users` - получение всех пользователей
 - `GET /users/api?query=${search}&limit=${limit}` - передача 2-х query параметров
 
+**headers** (`src/app/profile/api/route.ts`):
+
+- `GET /profile/api` - работа с headers
 
 ### 2. Клиентская часть
 
