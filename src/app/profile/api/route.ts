@@ -1,3 +1,4 @@
+// получение request headers с помощью NextRequest
 // import { type NextRequest } from "next/server";
 
 // //
@@ -8,6 +9,22 @@
 //   return new Response("Данные пользователя (route)");
 // }
 
+// ==============================================
+
+// получение request headers с помощью headers
+// import { headers } from "next/headers";
+
+// //
+// export async function GET() {
+//   const headerList = await headers();
+//   console.log(headerList.get("Authorization")); // bearer 123qwerty123
+
+//   return new Response("Данные пользователя (route)");
+// }
+
+// ==============================================
+
+// настраиваем response headers для получения ответа в html формате
 // import { headers } from "next/headers";
 
 // //
@@ -20,6 +37,9 @@
 //   });
 // }
 
+// ==============================================
+
+// настройка ответа в зависимости от request headers (+ к мобилкам)
 import { headers } from "next/headers";
 
 export async function GET() {
