@@ -13,6 +13,9 @@ export function ThemeSwitcher() {
         headers: { "Content-Type": "Application/json" },
         body: JSON.stringify({ theme: newTheme }),
       });
+
+      setTheme(newTheme);
+      document.documentElement.setAttribute("data-theme", newTheme);
     } catch (error) {
       console.error("Не удалось установить цветовую тему", error);
     }
@@ -31,7 +34,7 @@ export function ThemeSwitcher() {
   return (
     <button
       onClick={toggleTheme}
-      className="px-5 py-3 text-white rounded bg-black"
+      className="px-5 py-3 text-white rounded cursor-pointer bg-black"
     >
       Сменить тему
     </button>
