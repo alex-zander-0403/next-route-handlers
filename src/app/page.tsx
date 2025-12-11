@@ -95,7 +95,14 @@ export default function Home() {
         href="/users"
         className="px-5 py-2 cursor border border-blue-900 bg-blue-700"
       >
-        To Users
+        Users
+      </Link>
+
+      <Link
+        href="/theme"
+        className="px-5 py-2 cursor border border-blue-900 bg-blue-700"
+      >
+        Themes
       </Link>
 
       <ul className="flex flex-col p-5 gap-3 rounded bg-gray-600">
