@@ -1,18 +1,40 @@
-import { type NextRequest } from "next/server";
+// =================={ Работа с cookies }============================
 
+// 1 - через заголовки HTTP (низкоуровневый подход)
+
+// import { type NextRequest } from "next/server";
 //
-export async function GET(request: NextRequest) {
-  const theme = request.cookies.get("theme") || "light";
+// export async function GET(request: NextRequest) {
+//   const theme = request.cookies.get("theme") || "light"; // чтение cookies из запроса
 
-  return new Response(`Цветовая тема: ${theme}`, {
+//   // установка новой cookie через заголовок ответа
+//   return new Response(`Цветовая тема: ${theme}`, {
+//     headers: {
+//       "Set-Cookie": `theme=dark`,
+//       "Content-Type": "text/plane; charset=UTF-8",
+//     },
+//   });
+// }
+
+// 2 - Через встроенную функцию cookies (удобно)
+
+import { cookies } from "next/headers";
+
+export async function GET() {
+  const cookieStore = cookies();
+  
+  (await cookieStore).set("result", "100");
+
+  console.log((await cookieStore).get("result"));
+
+  return new Response(`Цветовая тема: 1`, {
     headers: {
-      "Set-Cookie": `theme=dark`,
-      "Content-Type": "text/plane",
+      "Content-Type": "text/plane; charset=UTF-8",
     },
   });
 }
 
-// работа с headers -->
+// =================={ работа с headers }============================
 
 // получение request headers с помощью NextRequest
 // import { type NextRequest } from "next/server";
