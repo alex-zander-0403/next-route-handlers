@@ -12,7 +12,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const cookieStore = cookies();
   const { theme } = await request.json();
-  (await cookieStore).set("theme", theme);
+  (await cookieStore).set("theme", theme, { maxAge: 1000 });
 
   return Response.json({ theme });
 }
