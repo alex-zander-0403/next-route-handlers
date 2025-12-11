@@ -91,7 +91,12 @@ export default function Home() {
         </form>
       </div>
 
-      <Link href='/users' className="px-5 py-2 cursor border border-blue-900 bg-blue-700">To Users</Link>
+      <Link
+        href="/users"
+        className="px-5 py-2 cursor border border-blue-900 bg-blue-700"
+      >
+        To Users
+      </Link>
 
       <ul className="flex flex-col p-5 gap-3 rounded bg-gray-600">
         {comments.map((comment) => (
