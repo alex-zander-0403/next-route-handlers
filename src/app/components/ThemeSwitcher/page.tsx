@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 //
-export function ThemeSwitcher() {
+export default function ThemeSwitcher() {
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = async () => {

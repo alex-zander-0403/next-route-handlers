@@ -1,5 +1,5 @@
 "use client";
-import { ThemeSwitcher } from "../components/ThemeSwitcher/page";
+import ThemeSwitcher from "../components/ThemeSwitcher/page";
 
 //
 export default function ThemePage() {
